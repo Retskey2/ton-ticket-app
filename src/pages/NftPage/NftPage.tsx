@@ -16,7 +16,7 @@ export const NftPage = () => {
               size={300}
               value='http://facebook.github.io/react/'
               includeMargin
-              imageSettings={{ src: image, excavate: true, height: 60, width: 60 }}
+              imageSettings={{ src: '', excavate: true, height: 60, width: 60 }}
             />
           </div>
           <button>Scan QR code</button>

@@ -34,7 +34,7 @@ export const NftColectionsPage: React.FC = () => {
               {collections.map((item: any) => {
                 return (
                   <div className='grid h-24 grid-cols-item justify-between bg-[#1D2633] p-4 first:rounded-t-2xl' key={item.address}>
-                    <img className='rounded-full' src={image} alt='imagenft' />
+                    <img className='rounded-full' src='' alt='imagenft' />
                     <div className='grid'>
                       <div>Title</div>
                       <div className='text-[#8994A3]'>uknown tickets</div>

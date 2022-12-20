@@ -4,12 +4,11 @@ import * as path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/ticket-app/',
+  base: '/',
   build: {
     emptyOutDir: true,
     },
     server: {
-      // open: true,
       port: 3000,
     },
   plugins: [react()],
