@@ -1,1 +1,1 @@
-export * from './getShortToken'
+export * from './getShortToken';

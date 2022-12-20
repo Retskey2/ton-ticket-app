@@ -1,6 +1,6 @@
 import QRCode from 'qrcode.react';
 import { useLocation } from 'react-router-dom';
-import image from '@assets/image.png';
+import image from '@assets/images/image.png';
 
 export const NftPage = () => {
   const { state } = useLocation();

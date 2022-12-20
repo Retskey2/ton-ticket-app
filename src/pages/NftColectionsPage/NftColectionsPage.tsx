@@ -1,11 +1,12 @@
 import React from 'react';
-import { SearchPlug } from '@common/plugs/SearchPlug/SearchPlug';
+
 import InputSearch from '@common/InputSearch/InputSearch';
 import { useRequestCollectionInfiniteQuery } from '../../utils/api/hooks';
 import { useInView } from 'react-intersection-observer';
 import { getShortToken } from '@utils/helpers';
-import image from '@assets/image.png';
 import { useNavigate } from 'react-router-dom';
+
+import image from '@assets/images/image.png';
 
 export const NftColectionsPage: React.FC = () => {
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = useRequestCollectionInfiniteQuery();
@@ -33,7 +34,7 @@ export const NftColectionsPage: React.FC = () => {
               {collections.map((item: any) => {
                 return (
                   <div className='grid h-24 grid-cols-item justify-between bg-[#1D2633] p-4 first:rounded-t-2xl' key={item.address}>
-                    <img className='rounded-full' src={image} alt='logo' />
+                    <img className='rounded-full' src={image} alt='imagenft' />
                     <div className='grid'>
                       <div>Title</div>
                       <div className='text-[#8994A3]'>uknown tickets</div>
