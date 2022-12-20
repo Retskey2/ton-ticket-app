@@ -14,10 +14,8 @@ export const SearchPlug = () => {
           fill='#45AEF5'
         />
       </svg>
-      <h2 className='text-2xl font-bold leading-8'>Select collection</h2>
-      <p className='text-center text-base font-medium leading-6 text-[#8994A3]'>
-        Find and select required collection for ticket validation.
-      </p>
+      <h2 className='text-2xl font-bold leading-8'>Search collection</h2>
+      <p className='text-center text-base font-medium leading-6 text-[#8994A3]'>Input address required collection for ticket validation.</p>
     </div>
   );
 };
