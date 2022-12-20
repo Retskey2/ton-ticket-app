@@ -1,13 +1,16 @@
 import React from 'react';
 import { SearchPlug } from '@common/plugs/SearchPlug/SearchPlug';
 import InputSearch from '@common/InputSearch/InputSearch';
-
 import { useRequestCollectionInfiniteQuery } from '../../utils/api/hooks';
 import { useInView } from 'react-intersection-observer';
+import { getShortToken } from '@utils/helpers';
+import image from '@assets/image.png';
+import { useNavigate } from 'react-router-dom';
 
 export const NftColectionsPage: React.FC = () => {
-  const { data, isLoading, fetchNextPage, hasNextPage } = useRequestCollectionInfiniteQuery();
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = useRequestCollectionInfiniteQuery();
   const { inView, ref } = useInView();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     if (inView) {
@@ -22,24 +25,32 @@ export const NftColectionsPage: React.FC = () => {
 
   return (
     <div className='grid w-screen justify-center'>
-      <div className='w-[80vw] max-w-3xl'>
-        <div className='relative flex h-screen w-full flex-col bg-[#10161F]'>
-          <div className='mb-2 max-h-[760px]'>
-            <h1 className='m-2 text-center text-xl'>Collections</h1>
-            <div className='overflow-scrol max-h-[95%] overflow-x-hidden p-4'>
-              {collections.map((collection: any, index: number) => {
+      <div className='w-[100vw] max-w-3xl'>
+        <div className='relative flex h-full min-h-screen w-full flex-col bg-[#10161F] p-4'>
+          <div className='mb-2 max-h-[750px]'>
+            <h1 className='mt-6 mb-4 text-center text-xl'>Collections</h1>
+            <div className='max-h-[90%] overflow-scroll overflow-x-hidden'>
+              {collections.map((item: any) => {
                 return (
-                  <div className='flex h-24 items-center bg-[#1D2633]'>
-                    <div className='m-auto flex items-center'>
-                      <div className='mr-5'>{index}</div>
-                      <div className='mr-5'>{collection.address}</div>
-                      <button className='flex h-9 flex-row items-center justify-center rounded-2xl bg-[#2E3847] px-4'>Select</button>
+                  <div className='grid h-24 grid-cols-item justify-between bg-[#1D2633] p-4 first:rounded-t-2xl' key={item.address}>
+                    <img className='rounded-full' src={image} alt='logo' />
+                    <div className='grid'>
+                      <div>Title</div>
+                      <div className='text-[#8994A3]'>uknown tickets</div>
+                      <div className='text-[#556170]'>{getShortToken(item.address)}</div>
                     </div>
+                    <button
+                      className='flex h-9 flex-row items-center justify-center rounded-2xl bg-[#2E3847] px-4'
+                      onClick={() => navigate(`/nft-page/${item.address}`, { state: { item: item } })}
+                    >
+                      Select
+                    </button>
                   </div>
                 );
               })}
-              <div ref={ref} />
+              {isFetchingNextPage ? 'Loading more...' : hasNextPage ? 'Load Newer' : 'Nothing more to load'}
             </div>
+            <div ref={ref} />
           </div>
           <InputSearch />
         </div>

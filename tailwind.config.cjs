@@ -1,7 +1,11 @@
 module.exports = {
   content:["./src/**/*.{js,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        'item': '80px 1fr 100px',
+      }
+    },
   },
   plugins: [],
 }
