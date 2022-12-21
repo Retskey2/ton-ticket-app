@@ -1,14 +1,12 @@
-import { useInfiniteQuery } from 'react-query';
-import { requestCollection } from '../../requests';
+import { useQuery } from "react-query";
+import { requestCollection } from "../../../../utils/api/requests";
 
-const REQUEST_COLLECTIONS_LIMIT = 10;
-export const useRequestCollectionInfiniteQuery = () =>
-  useInfiniteQuery<any>(
-    ['collections'],
-    ({ pageParam = 0 }) => {
-      return requestCollection({ params: { limit: REQUEST_COLLECTIONS_LIMIT, offset: pageParam } });
+  export const useRequestCollection = (address: string) =>
+    useQuery<any>( ['collection'], 
+    () => {
+        return  requestCollection({params:{account: address}})
     },
     {
-      getNextPageParam: (lastCollectionsData, allCollectionsData) => allCollectionsData.length * REQUEST_COLLECTIONS_LIMIT
-    }
-  );
+      refetchOnWindowFocus: true,
+       enabled: false, // disable this query from automatically running
+    });

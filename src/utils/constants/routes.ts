@@ -1,4 +1,4 @@
 export const ROUTES = {
   COLLECTIONS: '/',
-  COLLECTION_PAGE: '/nft-page/:id'
+  COLLECTION_PAGE: '/nft-page/:address'
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import InputSearch from '@common/InputSearch/InputSearch';
 import { SearchPlug } from '@common/plugs/SearchPlug/SearchPlug';
 import styles from './NftCollectionPage.module.scss';
+import { useRequestCollection } from '../../utils/api/hooks';
 
 export const NftColectionsPage: React.FC = () => {
   return (
