@@ -1,12 +1,11 @@
 import QRCode from 'qrcode.react';
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 export const NftPage = () => {
   const [visible, setVisible] = useState(false);
   const { state } = useLocation();
   const navigate = useNavigate();
-  console.log(state);
 
   const handlerVisible = () => setVisible(!visible);
 

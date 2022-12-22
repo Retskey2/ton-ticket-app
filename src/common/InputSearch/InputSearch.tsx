@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './InputSearch.module.scss';
 import LogoTon from '@assets/icons/logoTon.svg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useRequestCollection } from '../../utils/api/hooks';
 import { Spinner } from '../Spinner/Spinner';
 
@@ -10,21 +10,15 @@ export default function InputSearch() {
 
   const [message, setMessage] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(false);
-  const { refetch, isLoading } = useRequestCollection(message);
+  const { refetch, isFetching } = useRequestCollection(message);
 
   useEffect(() => {
-    message.trim().length !== 0 ? setVisible(true) : setVisible(false);
-  }, [message]);
-
-  useEffect(() => {
-    isLoading ? setVisible(false) : setVisible(true);
-  }, [isLoading]);
+    message.trim().length !== 0 && !isFetching ? setVisible(true) : setVisible(false);
+  }, [message, isFetching]);
 
   const navigateToNftPage = async () => {
     const { data } = await refetch();
-    if (!isLoading) {
-      navigate(`/nft-page/${data.data.address}`, { state: data.data });
-    }
+    if (!isFetching) navigate('/nft-page', { state: data.data });
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setMessage(event.target.value.trim());
@@ -56,10 +50,12 @@ export default function InputSearch() {
         <div onClick={navigateToNftPage} className='absolute top-2 right-4 w-8 -rotate-90 animate-appearance cursor-pointer'>
           <LogoTon />
         </div>
-      ) : (
+      ) : isFetching ? (
         <div className='absolute -top-2 right-4 w-12 '>
           <Spinner />
         </div>
+      ) : (
+        <div />
       )}
     </div>
   );
