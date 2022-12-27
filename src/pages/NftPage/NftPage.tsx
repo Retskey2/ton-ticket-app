@@ -4,8 +4,8 @@ import QRCode from 'qrcode.react';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import ArrowDownSvg from '@assets/icons/ArrowDown.svg';
-import SelectSwapSvg from '@assets/icons/SelectSwap.svg';
+import ArrowDownSvg from '@assets/icons/arrowDown.svg';
+import SelectSwapSvg from '@assets/icons/selectSwap.svg';
 import CancelSvg from '@assets/icons/cancelIcon.svg';
 
 import styles from './NftPage.module.scss';
