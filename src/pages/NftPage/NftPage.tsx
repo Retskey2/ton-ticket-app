@@ -23,7 +23,7 @@ export const NftPage = () => {
       >
         <div
           className={classNames([styles.header], {
-            [styles.hidden]: fullscreen
+            ['hidden']: fullscreen
           })}
         >
           <div className={styles.title} onClick={handlerVisible}>
@@ -56,7 +56,7 @@ export const NftPage = () => {
 
         <div
           className={classNames([styles.subtitle], {
-            [styles.hidden]: fullscreen
+            ['hidden']: fullscreen
           })}
         >
           <h1>QR code for validation</h1>
@@ -74,7 +74,7 @@ export const NftPage = () => {
           />
           <span
             className={classNames([styles.fullHandler], {
-              [styles.hidden]: fullscreen
+              ['invisible']: fullscreen
             })}
             onClick={handleFullscreen}
           >
