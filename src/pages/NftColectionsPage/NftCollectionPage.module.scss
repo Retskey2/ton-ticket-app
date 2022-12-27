@@ -1,3 +1,7 @@
-.wrapper_main {
+.wrapper {
     @apply grid w-screen justify-center;
+
+    .container {
+        @apply relative flex h-full min-h-screen w-[100vw] max-w-3xl flex-col bg-[#10161F] p-4;
+    }
 }

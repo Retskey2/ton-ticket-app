@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRequestCollection } from '../../../utils/api/hooks';
+import styles from './SearchPlug.module.scss';
 
 export const SearchPlug = () => {
   const [error, setError] = useState(false);
@@ -10,7 +11,7 @@ export const SearchPlug = () => {
   }, [isError]);
 
   return (
-    <div className='m-auto flex h-[95%] max-w-sm flex-col items-center justify-center'>
+    <div className={styles.wrapper}>
       {!error ? (
         <>
           <svg width='128' height='144' viewBox='0 0 128 144' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -26,13 +27,11 @@ export const SearchPlug = () => {
               fill='#45AEF5'
             />
           </svg>
-          <h2 className='text-2xl font-bold leading-8'>Search collection</h2>
-          <p className='text-center text-base font-medium leading-6 text-[#8994A3]'>
-            Input address required collection for ticket validation.
-          </p>
+          <h1>Search collection</h1>
+          <p>Input address required collection for ticket validation.</p>
         </>
       ) : (
-        <div className='text-base font-medium text-[#556170]'>Your search returned no results</div>
+        <div className={styles.noResult}>Your search returned no results</div>
       )}
     </div>
   );

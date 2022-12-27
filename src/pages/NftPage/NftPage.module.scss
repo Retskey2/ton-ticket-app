@@ -1,0 +1,63 @@
+.wrapper {
+  @apply relative grid w-screen justify-center text-center;
+
+
+  .container {
+    @apply flex h-full min-h-screen w-[100vw] max-w-3xl flex-col p-4 bg-[#10161F];
+
+     &.bgWhite {
+      @apply bg-white;
+     }
+  }
+
+  .header {
+    @apply relative mx-auto mb-10 mt-6;
+
+
+    .title {
+     @apply flex items-center gap-2;
+    }
+
+    .popup {
+     @apply absolute flex w-full max-w-[350px] cursor-pointer items-center gap-4 rounded-xl bg-[#2E3847] py-2 px-4;
+    }
+
+    h1 {
+      @apply text-xl font-bold;
+    }
+  }
+
+  .subtitle {
+    >h1 {
+      @apply text-2xl font-bold leading-[32px];
+    }
+    >span {
+      @apply mt-2 leading-[24px] text-[#8994A3];
+    }
+  }
+
+  .qrBlock {
+    @apply mt-8 flex flex-col items-center;
+
+    .fullHandler {
+      @apply mt-5 cursor-pointer text-sm text-[#556170];
+    }
+  }
+
+  .footer {
+    @apply flex h-full flex-col justify-end mb-4;
+    
+    >button {
+     @apply mx-auto h-14 w-full max-w-[350px] rounded-xl bg-[#1D2633] px-6;
+    }
+
+    .cancelButton {
+      @apply mx-auto items-center p-4 gap-2 bg-[#00000014] w-12 rounded-[32px] cursor-pointer;
+    }
+  }
+
+   .hidden {
+      opacity: 0;
+      visibility: hidden;
+   }
+}

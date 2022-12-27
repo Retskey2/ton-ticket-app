@@ -18,6 +18,8 @@ export default function InputSearch() {
 
   const navigateToNftPage = async () => {
     const { data } = await refetch();
+    console.log(data);
+
     if (!isFetching) navigate('/nft-page', { state: data.data });
   };
 
@@ -27,8 +29,8 @@ export default function InputSearch() {
   };
 
   return (
-    <div className='relative'>
-      <span className='absolute top-4 left-4'>
+    <div className={styles.wrapper}>
+      <span>
         <svg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'>
           <path
             fillRule='evenodd'
@@ -38,20 +40,13 @@ export default function InputSearch() {
           />
         </svg>
       </span>
-      <input
-        placeholder='Search'
-        type='text'
-        onKeyUp={handleKeyPress}
-        onChange={handleChange}
-        value={message}
-        className='h-12 w-full rounded-xl border-0 bg-[#1D2633] pl-10 pr-20 outline-none'
-      />
+      <input placeholder='Search' type='text' onKeyUp={handleKeyPress} onChange={handleChange} value={message} />
       {visible ? (
-        <div onClick={navigateToNftPage} className='absolute top-2 right-4 w-8 -rotate-90 animate-appearance cursor-pointer'>
+        <div onClick={navigateToNftPage} className={styles.wrapperLogo}>
           <LogoTon />
         </div>
       ) : isFetching ? (
-        <div className='absolute -top-2 right-4 w-12 '>
+        <div className={styles.wrapperSpinner}>
           <Spinner />
         </div>
       ) : (

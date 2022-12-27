@@ -1,3 +1,19 @@
-.input_search {
-    @apply h-12 rounded-xl border-0 bg-[#1D2633] p-4 outline-none m-4;
+.wrapper {
+    @apply relative;
+
+    > span {
+        @apply absolute top-4 left-4;
+    }
+
+    > input {
+        @apply h-12 w-full rounded-xl border-0 bg-[#1D2633] pl-10 pr-20 outline-none;
+    }
+
+    .wrapperLogo {
+        @apply absolute top-2 right-4 w-8 -rotate-90 animate-appearance cursor-pointer;
+    }
+
+    .wrapperSpinner {
+        @apply absolute -top-2 right-4 w-8;
+    }
 }

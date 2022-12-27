@@ -1,20 +1,33 @@
+import classNames from 'classnames';
 import QRCode from 'qrcode.react';
 import { useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import styles from './NftPage.module.scss';
 
 export const NftPage = () => {
   const [visible, setVisible] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
+
   const { state } = useLocation();
   const navigate = useNavigate();
 
+  const handleFullscreen = () => setFullscreen(!fullscreen);
   const handlerVisible = () => setVisible(!visible);
 
   return (
-    <div className='relative grid w-screen justify-center text-center'>
-      <div className=' flex h-full min-h-screen w-[100vw] max-w-3xl flex-col bg-[#10161F] p-4'>
-        <div className='relative m-auto'>
-          <div className='mb-2 flex items-center gap-2' onClick={handlerVisible}>
-            <h1 className='text-xl font-bold'>{state.metadata.name}</h1>
+    <div className={styles.wrapper}>
+      <div
+        className={classNames([styles.container], {
+          [styles.bgWhite]: fullscreen
+        })}
+      >
+        <div
+          className={classNames([styles.header], {
+            [styles.hidden]: fullscreen
+          })}
+        >
+          <div className={styles.title} onClick={handlerVisible}>
+            <h1>{state.metadata.name}</h1>
             <div className='items-center'>
               <svg width='12' height='8' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'>
                 <path
@@ -25,10 +38,7 @@ export const NftPage = () => {
             </div>
           </div>
           {visible && (
-            <div
-              onClick={() => navigate('/')}
-              className='absolute flex w-full max-w-[350px] cursor-pointer items-center gap-4 rounded-xl bg-[#2E3847] py-2 px-4'
-            >
+            <div onClick={() => navigate('/')} className={styles.popup}>
               <span>Select another collection</span>
               <svg width='12' height='14' viewBox='0 0 12 14' fill='none' xmlns='http://www.w3.org/2000/svg'>
                 <path
@@ -44,13 +54,17 @@ export const NftPage = () => {
           )}
         </div>
 
-        <div className='text-center'>
-          <div className='text-2xl font-bold leading-[32px]'>QR code for validation</div>
-          <p className='mt-2 leading-[24px] text-[#8994A3]'>
-            Show this is QR code to visitor <br /> to verify ticket ownership.
-          </p>
+        <div
+          className={classNames([styles.subtitle], {
+            [styles.hidden]: fullscreen
+          })}
+        >
+          <h1>QR code for validation</h1>
+          <span>
+            Show this is QR code to visitor <br /> to verify ticket ownership.
+          </span>
         </div>
-        <div className='mt-8 flex flex-col items-center'>
+        <div className={styles.qrBlock}>
           <QRCode
             className='rounded-xl'
             size={350}
@@ -58,9 +72,31 @@ export const NftPage = () => {
             includeMargin
             imageSettings={{ src: state.metadata.image, excavate: true, height: 70, width: 70 }}
           />
-          <div className='mt-5 cursor-pointer text-sm text-[#556170]'>Tap to show on full screen</div>
+          <span
+            className={classNames([styles.fullHandler], {
+              [styles.hidden]: fullscreen
+            })}
+            onClick={handleFullscreen}
+          >
+            Tap to show on full screen
+          </span>
         </div>
-        <button className='m-auto h-14 w-full max-w-[350px] rounded-xl bg-[#1D2633] px-6'>Scan QR code</button>
+        <div className={styles.footer}>
+          {fullscreen ? (
+            <div className={styles.cancelButton} onClick={handleFullscreen}>
+              <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                <path
+                  fill-rule='evenodd'
+                  clip-rule='evenodd'
+                  d='M0.46967 0.46967C0.762563 0.176777 1.23744 0.176777 1.53033 0.46967L6 4.93934L10.4697 0.46967C10.7626 0.176777 11.2374 0.176777 11.5303 0.46967C11.8232 0.762563 11.8232 1.23744 11.5303 1.53033L7.06066 6L11.5303 10.4697C11.8232 10.7626 11.8232 11.2374 11.5303 11.5303C11.2374 11.8232 10.7626 11.8232 10.4697 11.5303L6 7.06066L1.53033 11.5303C1.23744 11.8232 0.762563 11.8232 0.46967 11.5303C0.176777 11.2374 0.176777 10.7626 0.46967 10.4697L4.93934 6L0.46967 1.53033C0.176777 1.23744 0.176777 0.762563 0.46967 0.46967Z'
+                  fill='black'
+                />
+              </svg>
+            </div>
+          ) : (
+            <button onClick={() => navigate('/validate-page')}>Scan QR code</button>
+          )}
+        </div>
       </div>
     </div>
   );
