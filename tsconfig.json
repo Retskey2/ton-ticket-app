@@ -22,6 +22,7 @@
       "@pages": ["./pages"],
       "@features/*": ["./features/*"],
       "@assets/*": ["./assets/*"],
+      "@utils/*": ["./utils/*"],
       "@utils/api": ["./utils/api"],
       "@utils/constants": ["./utils/constants"],
       "@utils/helpers": ["./utils/helpers"],

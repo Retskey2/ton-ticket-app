@@ -1,7 +1,6 @@
 import { useQuery } from "react-query";
 import { requestCollection } from "../../../../utils/api/requests";
 
-
   export const useRequestCollection = (message?: string) =>
  {
   return useQuery<any>( ['collection'], 

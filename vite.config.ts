@@ -19,6 +19,7 @@ export default defineConfig({
       '@common': path.resolve(__dirname, './src/common'),
       '@common/*': path.resolve(__dirname, './src/common'),
       '@pages': path.resolve(__dirname, './src/pages'),
+      '@utils': path.resolve(__dirname, './src/utils'),
       '@utils/api': path.resolve(__dirname, './src/utils/api'),
       '@utils/firebase': path.resolve(__dirname, './src/utils/firebase'),
       '@utils/constants': path.resolve(__dirname, './src/utils/constants'),

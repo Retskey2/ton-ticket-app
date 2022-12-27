@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useRequestCollection } from '../../../utils/api/hooks';
+import { useRequestCollection } from '@utils/api/hooks';
 import styles from './SearchPlug.module.scss';
 
 export const SearchPlug = () => {
@@ -28,7 +28,9 @@ export const SearchPlug = () => {
             />
           </svg>
           <h1>Search collection</h1>
-          <p>Input address required collection for ticket validation.</p>
+          <p>
+            Input address required collection <br /> for ticket validation.
+          </p>
         </>
       ) : (
         <div className={styles.noResult}>Your search returned no results</div>

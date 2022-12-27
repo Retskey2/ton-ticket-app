@@ -2,7 +2,7 @@
   @apply relative grid w-screen justify-center text-center;
 
 
-  .container {
+  .main_background {
     @apply grid grid-rows-page h-screen w-[100vw] max-w-3xl p-4 bg-[#10161F];
 
      &.bgWhite {
@@ -10,12 +10,12 @@
      }
   }
 
-  .header {
+  .header_container {
     @apply relative mx-auto mb-10 mt-6;
 
 
     .title {
-     @apply flex items-center gap-2;
+     @apply flex items-center gap-2 cursor-pointer;
     }
 
     .popup {
@@ -36,23 +36,23 @@
     }
   }
 
-  .qrBlock {
+  .qr_container {
     @apply mt-8 flex flex-col items-center row-start-3;
     
 
-    .fullHandler {
+    .fullscreen_handler {
       @apply mt-5 cursor-pointer text-sm text-[#556170];
     }
   }
 
-  .footer {
+  .footer_container {
     @apply flex h-full flex-col justify-end mb-4 row-start-4;
     
     >button {
      @apply mx-auto h-14 w-full max-w-[350px] rounded-xl bg-[#1D2633] px-6;
     }
 
-    .cancelButton {
+    .cancel_wrapper {
       @apply mx-auto items-center p-4 gap-2 bg-[#00000014] w-12 rounded-[32px] cursor-pointer;
     }
   }
