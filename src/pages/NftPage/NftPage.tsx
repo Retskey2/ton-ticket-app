@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import QRCode from 'qrcode.react';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import ArrowDownSvg from '@assets/icons/arrowDown.svg';
@@ -9,12 +9,21 @@ import SelectSwapSvg from '@assets/icons/selectSwap.svg';
 import CancelSvg from '@assets/icons/cancelIcon.svg';
 
 import styles from './NftPage.module.scss';
-import useWindowSize from '@utils/hooks/useWindowSize';
+import { useWindowSize } from 'usehooks-ts';
 
 export const NftPage = () => {
   const [visible, setVisible] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
-  const { width } = useWindowSize();
+  const [sizeScreen, setSizeScreen] = useState(0);
+  const { width, height } = useWindowSize();
+
+  useEffect(() => {
+    if (width <= 280) setSizeScreen(220);
+    if (width > 281 && width <= 320) setSizeScreen(240);
+    if (width > 321 && width < 420) setSizeScreen(300);
+    if (width >= 420 && width < 720) setSizeScreen(400);
+    if (width >= 720) setSizeScreen(500);
+  }, [width]);
 
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -22,16 +31,7 @@ export const NftPage = () => {
   const handleFullscreen = () => setFullscreen(!fullscreen);
   const handlerVisible = () => setVisible(!visible);
 
-  const sizeQrCode = (width: number) => {
-    if (width > 319 && width < 322) return 200;
-
-    if (width >= 322 && width < 420) return 300;
-
-    if (width >= 420 && width < 720) return 400;
-    else return 500;
-  };
-
-  console.log(sizeQrCode(width), width);
+  console.log(width, sizeScreen);
 
   return (
     <div className={styles.wrapper}>
@@ -70,7 +70,7 @@ export const NftPage = () => {
           <QRCode
             className='rounded-xl'
             value={state.metadata.external_link}
-            size={sizeQrCode(width)}
+            size={sizeScreen}
             includeMargin
             imageSettings={{ src: state.metadata.image, excavate: true, height: 70, width: 70 }}
           />
