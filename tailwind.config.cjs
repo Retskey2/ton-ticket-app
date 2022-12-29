@@ -19,7 +19,7 @@ module.exports = {
         'appearance': 'pulse 0.4s cubic-bezier(0.4, 0, 0.6, 1)',
       },
       gridTemplateRows: {
-        'page': '0.5fr 0.5fr 1fr 1fr',
+        'page': '0.25fr 0.25fr 1fr 0.5fr',
       }
     },
   },

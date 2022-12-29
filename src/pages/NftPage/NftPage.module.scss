@@ -3,7 +3,7 @@
 
 
   .main_background {
-    @apply grid grid-rows-page h-screen w-[100vw] max-w-3xl p-4 bg-[#10161F];
+    @apply grid grid-rows-page gap-3 h-screen w-[100vw] max-w-3xl p-4 bg-[#10161F];
 
      &.bgWhite {
       @apply bg-white;
@@ -11,7 +11,7 @@
   }
 
   .header_container {
-    @apply relative mx-auto mb-10 mt-6;
+    @apply relative mx-auto mt-6;
 
 
     .title {
@@ -32,12 +32,12 @@
       @apply text-2xl font-bold leading-[32px];
     }
     >span {
-      @apply mt-2 leading-[24px] text-[#8994A3];
+      @apply leading-[24px] text-[#8994A3];
     }
   }
 
   .qr_container {
-    @apply mt-8 flex flex-col items-center row-start-3;
+    @apply  flex flex-col items-center row-start-3;
     
 
     .fullscreen_handler {
@@ -46,7 +46,7 @@
   }
 
   .footer_container {
-    @apply flex h-full flex-col justify-end mb-4 row-start-4;
+    @apply flex h-full flex-col justify-end mb-4 row-start-4 w-full ;
     
     >button {
      @apply mx-auto h-14 w-full max-w-[350px] rounded-xl bg-[#1D2633] px-6;

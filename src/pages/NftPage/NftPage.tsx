@@ -9,16 +9,29 @@ import SelectSwapSvg from '@assets/icons/selectSwap.svg';
 import CancelSvg from '@assets/icons/cancelIcon.svg';
 
 import styles from './NftPage.module.scss';
+import useWindowSize from '@utils/hooks/useWindowSize';
 
 export const NftPage = () => {
   const [visible, setVisible] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+  const { width } = useWindowSize();
 
   const { state } = useLocation();
   const navigate = useNavigate();
 
   const handleFullscreen = () => setFullscreen(!fullscreen);
   const handlerVisible = () => setVisible(!visible);
+
+  const sizeQrCode = (width: number) => {
+    if (width > 319 && width < 322) return 200;
+
+    if (width >= 322 && width < 420) return 300;
+
+    if (width >= 420 && width < 720) return 400;
+    else return 500;
+  };
+
+  console.log(sizeQrCode(width), width);
 
   return (
     <div className={styles.wrapper}>
@@ -56,8 +69,8 @@ export const NftPage = () => {
         <div className={styles.qr_container}>
           <QRCode
             className='rounded-xl'
-            size={350}
             value={state.metadata.external_link}
+            size={sizeQrCode(width)}
             includeMargin
             imageSettings={{ src: state.metadata.image, excavate: true, height: 70, width: 70 }}
           />

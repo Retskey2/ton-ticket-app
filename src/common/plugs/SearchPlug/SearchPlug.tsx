@@ -27,7 +27,7 @@ export const SearchPlug = () => {
               fill='#45AEF5'
             />
           </svg>
-          <h1>Search collection</h1>
+          <h1>Enter collection address</h1>
           <p>
             Input address required collection <br /> for ticket validation.
           </p>
