@@ -19,7 +19,7 @@ export const InputSearch = () => {
 
   const navigateToNftPage = async () => {
     const { data } = await refetch();
-    if (!isFetching) navigate('/nft-page', { state: data.data });
+    if (!isFetching) navigate(`/nft-page/${data.data.address}`, { state: data.data });
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setMessage(event.target.value.trim());

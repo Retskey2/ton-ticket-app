@@ -19,7 +19,11 @@
     }
 
     .popup {
-     @apply absolute flex w-full max-w-[350px] cursor-pointer items-center gap-4 rounded-xl bg-[#2E3847] py-2 px-4;
+     @apply absolute flex flex-col w-full gap-2 rounded-xl bg-[#2E3847] p-2  ;
+
+     > li {
+      @apply px-2  w-full flex cursor-pointer justify-between items-center;
+     }
     }
 
     h1 {
@@ -46,7 +50,7 @@
   }
 
   .footer_container {
-    @apply flex h-full flex-col justify-end mb-4 row-start-4 w-full ;
+    @apply flex h-full flex-col justify-end mb-4 row-start-4 w-full;
     
     >button {
      @apply mx-auto h-14 w-full max-w-[350px] rounded-xl bg-[#1D2633] px-6;

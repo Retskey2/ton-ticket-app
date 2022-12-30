@@ -1,7 +1,7 @@
 .wrapper {
     @apply relative grid w-screen justify-center text-center;
 
-    .container {
+    .main_background {
         @apply relative flex h-full min-h-screen w-[100vw] max-w-3xl flex-col bg-[#10161F] p-4;
     }
 }

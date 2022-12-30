@@ -2,20 +2,45 @@ import classNames from 'classnames';
 import QRCode from 'qrcode.react';
 
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import ArrowDownSvg from '@assets/icons/arrowDown.svg';
 import SelectSwapSvg from '@assets/icons/selectSwap.svg';
+import CopySvg from '@assets/icons/copyIcon.svg';
 import CancelSvg from '@assets/icons/cancelIcon.svg';
 
 import styles from './NftPage.module.scss';
 import { useWindowSize } from 'usehooks-ts';
+import { useRequestCollection } from '@utils/api/hooks';
 
 export const NftPage = () => {
   const [visible, setVisible] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [sizeScreen, setSizeScreen] = useState(0);
-  const { width, height } = useWindowSize();
+  const [data, setData] = useState<NftCollection | undefined>(undefined);
+
+  const handleFullscreen = () => setFullscreen(!fullscreen);
+  const handlerVisible = () => setVisible(!visible);
+
+  const { width } = useWindowSize();
+
+  const { state } = useLocation();
+  const { address } = useParams();
+  const navigate = useNavigate();
+
+  const { refetch, isLoading } = useRequestCollection(address);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await refetch();
+      setData(data.data);
+    };
+    if (!data) {
+      fetchData().catch(console.error);
+    } else {
+      setData(state);
+    }
+  }, []);
 
   useEffect(() => {
     if (width <= 280) setSizeScreen(220);
@@ -25,13 +50,9 @@ export const NftPage = () => {
     if (width >= 720) setSizeScreen(500);
   }, [width]);
 
-  const { state } = useLocation();
-  const navigate = useNavigate();
+  console.log(data);
 
-  const handleFullscreen = () => setFullscreen(!fullscreen);
-  const handlerVisible = () => setVisible(!visible);
-
-  console.log(width, sizeScreen);
+  if (isLoading) return <div>Загрузка..</div>;
 
   return (
     <div className={styles.wrapper}>
@@ -46,14 +67,20 @@ export const NftPage = () => {
           })}
         >
           <div className={styles.title} onClick={handlerVisible}>
-            <h1>{state.metadata.name}</h1>
+            <h1>{data?.metadata?.name} </h1>
             <ArrowDownSvg />
           </div>
           {visible && (
-            <div onClick={() => navigate('/')} className={styles.popup}>
-              <span>Select another collection</span>
-              <SelectSwapSvg />
-            </div>
+            <ul className={styles.popup}>
+              <li>
+                <span>Select another collection</span>
+                <SelectSwapSvg />
+              </li>
+              <li>
+                <span>Copy this link</span>
+                <CopySvg />
+              </li>
+            </ul>
           )}
         </div>
         <div
@@ -69,10 +96,10 @@ export const NftPage = () => {
         <div className={styles.qr_container}>
           <QRCode
             className='rounded-xl'
-            value={state.metadata.external_link}
+            value={data?.metadata?.external_link}
             size={sizeScreen}
             includeMargin
-            imageSettings={{ src: state.metadata.image, excavate: true, height: 70, width: 70 }}
+            imageSettings={{ src: data?.metadata?.image, excavate: true, height: 70, width: 70 }}
           />
           <span
             className={classNames([styles.fullscreen_handler], {
