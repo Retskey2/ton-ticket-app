@@ -5,3 +5,11 @@
         @apply relative flex h-full min-h-screen w-[100vw] max-w-3xl flex-col bg-[#10161F] p-4;
     }
 }
+
+.qr-image-wrapper section {
+    border-radius: 16px;
+}
+
+.qr-image-wrapper section div {
+    box-shadow: unset !important;
+}
