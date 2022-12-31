@@ -1,6 +1,12 @@
 module.exports = {
   content:["./src/**/*.{js,jsx,tsx}"],
   theme: {
+    screens: {
+      sm: "280px",
+      md: "330px",
+      lg: "420px",
+      xl: "720px",
+    },
     extend: {
       gridTemplateColumns: {
         'item': '80px 1fr 100px',

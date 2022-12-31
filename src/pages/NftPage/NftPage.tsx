@@ -12,6 +12,7 @@ import CancelSvg from '@assets/icons/cancelIcon.svg';
 import styles from './NftPage.module.scss';
 import { useWindowSize } from 'usehooks-ts';
 import { useRequestCollection } from '@utils/api/hooks';
+import CopyPath from '@common/CopyPath/CopyPath';
 
 export const NftPage = () => {
   const [visible, setVisible] = useState(false);
@@ -50,8 +51,6 @@ export const NftPage = () => {
     if (width >= 720) setSizeScreen(500);
   }, [width]);
 
-  console.log(data);
-
   if (isLoading) return <div>Загрузка..</div>;
 
   return (
@@ -72,12 +71,12 @@ export const NftPage = () => {
           </div>
           {visible && (
             <ul className={styles.popup}>
-              <li>
+              <li onClick={() => navigate('/')}>
                 <span>Select another collection</span>
                 <SelectSwapSvg />
               </li>
               <li>
-                <span>Copy this link</span>
+                <CopyPath />
                 <CopySvg />
               </li>
             </ul>
