@@ -8,7 +8,12 @@ import pluginRewriteAll from 'vite-plugin-rewrite-all';
 export default defineConfig({
   base: '/',
   build: {
-    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        nested:  path.resolve(__dirname, 'NftPage/index.html'),
+      },
+    },
     },
     server: {
       port: 3000,
