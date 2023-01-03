@@ -51,73 +51,69 @@ export const NftPage = () => {
     if (width >= 720) setSizeScreen(500);
   }, [width]);
 
-  if (isLoading) return <div>Загрузка..</div>;
-
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={classNames('grid h-full grid-rows-page gap-4 p-4', {
+        ['bg-white']: fullscreen
+      })}
+    >
       <div
-        className={classNames([styles.main_background], {
-          [styles.bgWhite]: fullscreen
+        className={classNames(styles.header_container, {
+          ['hidden']: fullscreen
         })}
       >
-        <div
-          className={classNames([styles.header_container], {
-            ['hidden']: fullscreen
-          })}
-        >
-          <div className={styles.title} onClick={handlerVisible}>
-            <h1>{data?.metadata?.name} </h1>
-            <ArrowDownSvg />
+        <div className={styles.title} onClick={handlerVisible}>
+          <h1>{data?.metadata?.name} </h1>
+          <ArrowDownSvg />
+        </div>
+        {visible && (
+          <ul className={styles.popup}>
+            <li onClick={() => navigate('/')}>
+              <span>Select another collection</span>
+              <SelectSwapSvg />
+            </li>
+            <li>
+              <CopyPath />
+              <CopySvg />
+            </li>
+          </ul>
+        )}
+      </div>
+      <div
+        className={classNames(styles.subtitle, {
+          ['hidden']: fullscreen
+        })}
+      >
+        <h1>QR code for validation</h1>
+        <span>
+          Show this is QR code to visitor <br /> to verify ticket ownership.
+        </span>
+      </div>
+      <div className={styles.qr_container}>
+        <QRCode
+          className='rounded-xl p-2'
+          includeMargin
+          value={data?.metadata?.external_link}
+          size={sizeScreen}
+          imageSettings={{ src: data?.metadata?.image, excavate: true, height: 70, width: 70 }}
+        />
+      </div>
+      <div
+        className={classNames(styles.fullscreen_handler, {
+          ['hidden']: fullscreen
+        })}
+        onClick={handleFullscreen}
+      >
+        Tap to show on full screen
+      </div>
+      <div className={styles.footer_container}>
+        {fullscreen ? (
+          <div className={styles.cancel_wrapper} onClick={handleFullscreen}>
+            <CancelSvg />
           </div>
-          {visible && (
-            <ul className={styles.popup}>
-              <li onClick={() => navigate('/')}>
-                <span>Select another collection</span>
-                <SelectSwapSvg />
-              </li>
-              <li>
-                <CopyPath />
-                <CopySvg />
-              </li>
-            </ul>
-          )}
-        </div>
-        <div
-          className={classNames([styles.subtitle], {
-            ['hidden']: fullscreen
-          })}
-        >
-          <h1>QR code for validation</h1>
-          <span>
-            Show this is QR code to visitor <br /> to verify ticket ownership.
-          </span>
-        </div>
-        <div className={styles.qr_container}>
-          <QRCode
-            className='rounded-xl'
-            value={data?.metadata?.external_link}
-            size={sizeScreen}
-            includeMargin
-            imageSettings={{ src: data?.metadata?.image, excavate: true, height: 70, width: 70 }}
-          />
-          <span
-            className={classNames([styles.fullscreen_handler], {
-              ['invisible']: fullscreen
-            })}
-            onClick={handleFullscreen}
-          >
-            Tap to show on full screen
-          </span>
-        </div>
-        <div className={styles.footer_container}>
-          {fullscreen ? (
-            <div className={styles.cancel_wrapper} onClick={handleFullscreen}>
-              <CancelSvg />
-            </div>
-          ) : (
-            <button onClick={() => navigate('/validate-page')}>Scan QR code</button>
-          )}
-        </div>
+        ) : (
+          <button onClick={() => navigate('/validate-page')}>Scan QR code</button>
+        )}
       </div>
     </div>
   );

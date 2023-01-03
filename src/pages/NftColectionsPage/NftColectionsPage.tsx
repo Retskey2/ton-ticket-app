@@ -5,13 +5,9 @@ import styles from './NftCollectionPage.module.scss';
 
 export const NftColectionsPage: React.FC = () => {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.main_background}>
-        <div className='m-auto h-full'>
-          <SearchPlug />
-        </div>
-        <InputSearch />
-      </div>
+    <div className='flex flex-col justify-between h-full p-4'>
+      <SearchPlug />
+      <InputSearch />
     </div>
   );
 };

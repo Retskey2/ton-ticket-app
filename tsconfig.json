@@ -18,7 +18,9 @@
     "baseUrl": "./src",
     "paths": {
       "@common": ["./common"],
+      "@providers": ["./providers"],
       "@common/*": ["./common/*"],
+      "@providers/*": ["./providers/*"],
       "@pages": ["./pages"],
       "@features/*": ["./features/*"],
       "@assets/*": ["./assets/*"],

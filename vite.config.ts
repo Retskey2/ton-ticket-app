@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import svgr from 'vite-plugin-svgr'
+import pluginRewriteAll from 'vite-plugin-rewrite-all';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,11 +14,11 @@ export default defineConfig({
       port: 3000,
     },
   plugins: [
-    svgr({ exportAsDefault: true}), react()],
+    svgr({ exportAsDefault: true}), react(), pluginRewriteAll()],
   resolve: {
     alias: {
       '@common': path.resolve(__dirname, './src/common'),
-      '@common/*': path.resolve(__dirname, './src/common'),
+      '@providers': path.resolve(__dirname, './src/providers'),
       '@pages': path.resolve(__dirname, './src/pages'),
       '@utils': path.resolve(__dirname, './src/utils'),
       '@utils/api': path.resolve(__dirname, './src/utils/api'),

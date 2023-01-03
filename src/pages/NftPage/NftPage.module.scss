@@ -1,28 +1,15 @@
-.wrapper {
-  @apply relative grid w-screen justify-center text-center;
-
-
-  .main_background {
-    @apply grid grid-rows-page gap-3 h-screen w-[100vw] max-w-3xl p-4 bg-[#10161F];
-
-     &.bgWhite {
-      @apply bg-white;
-     }
-  }
-
-  .header_container {
-    @apply relative mx-auto mt-6;
-
+.header_container {
+    @apply relative mx-auto mt-6 text-center;
 
     .title {
      @apply flex items-center gap-2 cursor-pointer;
     }
 
     .popup {
-     @apply absolute flex flex-col w-full gap-2 rounded-xl bg-[#2E3847] p-2  ;
+     @apply absolute flex flex-col w-full gap-2 rounded-xl bg-[#2E3847] p-2;
 
      > li {
-      @apply px-2  w-full flex cursor-pointer justify-between items-center;
+      @apply px-2 w-full flex cursor-pointer justify-between items-center;
      }
     }
 
@@ -32,6 +19,7 @@
   }
 
   .subtitle {
+    @apply text-center;
     >h1 {
       @apply text-2xl font-bold leading-[32px];
     }
@@ -41,23 +29,21 @@
   }
 
   .qr_container {
-    @apply  flex flex-col items-center row-start-3;
-    
+    @apply flex flex-col items-center row-start-3 justify-center;
+  }
 
-    .fullscreen_handler {
-      @apply mt-5 cursor-pointer text-sm text-[#556170];
-    }
+  .fullscreen_handler {
+    @apply cursor-pointer text-sm text-[#556170] row-start-4 mx-auto pt-4;
   }
 
   .footer_container {
-    @apply flex h-full flex-col justify-end mb-4 row-start-4 w-full;
+    @apply flex h-full flex-col justify-center mb-4 row-start-5 w-full;
     
     >button {
      @apply mx-auto h-14 w-full max-w-[350px] rounded-xl bg-[#1D2633] px-6;
     }
 
     .cancel_wrapper {
-      @apply mx-auto items-center p-4 gap-2 bg-[#00000014] w-12 rounded-[32px] cursor-pointer;
+      @apply flex mx-auto justify-center bg-[#00000014] items-center p-4  w-14 h-14 rounded-[32px] cursor-pointer;
     }
   }
-}

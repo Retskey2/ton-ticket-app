@@ -1,0 +1,7 @@
+.wrapper {
+    @apply relative grid w-screen justify-center h-full min-w-[250px];
+
+    .main_background {
+        @apply relative flex h-full min-h-screen w-[100vw] xl:max-w-3xl flex-col bg-[#10161F] gap-6;
+    }
+}
