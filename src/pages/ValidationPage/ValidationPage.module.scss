@@ -1,15 +1,11 @@
-.wrapper {
-    @apply relative grid w-screen justify-center text-center;
+.validation_container {
+    @apply m-auto;
 
-    .main_background {
-        @apply relative flex h-full min-h-screen w-[100vw] max-w-3xl flex-col bg-[#10161F] p-4;
+    >h1 {
+        @apply mb-6 text-center text-2xl font-bold;
     }
-}
 
-.qr-image-wrapper section {
-    border-radius: 16px;
-}
-
-.qr-image-wrapper section div {
-    box-shadow: unset !important;
+    .qrScan_container {
+        @apply sm:w-[200px] md:w-[300px] lg:w-[400px] xl:w-[500px];
+    }
 }

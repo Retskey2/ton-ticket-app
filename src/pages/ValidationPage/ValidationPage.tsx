@@ -15,13 +15,11 @@ export const ValidationPage = () => {
   };
 
   return (
-    <>
-      <div className='m-auto'>
-        <div className='mb-6 text-center text-2xl font-bold'>Scan QR code</div>
-        <div className='sm:w-[200px] md:w-[300px] lg:w-[400px] xl:w-[500px]'>
-          <QrScan className='qr-image-wrapper' facingMode='environment' delay={300} onError={handleError} onScan={handleScan} />
-        </div>
+    <div className={styles.validation_container}>
+      <h1>Scan QR code</h1>
+      <div className={styles.qrScan_container}>
+        <QrScan className='qr-image-wrapper' facingMode='environment' delay={300} onError={handleError} onScan={handleScan} />
       </div>
-    </>
+    </div>
   );
 };

@@ -13,6 +13,7 @@ import styles from './NftPage.module.scss';
 import { useWindowSize } from 'usehooks-ts';
 import { useRequestCollection } from '@utils/api/hooks';
 import CopyPath from '@common/CopyPath/CopyPath';
+import { SkeletonLoader } from '@common/SkeletonLoaders';
 
 export const NftPage = () => {
   const [visible, setVisible] = useState(false);
@@ -53,7 +54,7 @@ export const NftPage = () => {
 
   return (
     <div
-      className={classNames('grid h-full grid-rows-page gap-4 p-4', {
+      className={classNames(styles.nft_container, {
         ['bg-white']: fullscreen
       })}
     >
@@ -63,8 +64,14 @@ export const NftPage = () => {
         })}
       >
         <div className={styles.title} onClick={handlerVisible}>
-          <h1>{data?.metadata?.name} </h1>
-          <ArrowDownSvg />
+          {isLoading ? (
+            <SkeletonLoader width={200} />
+          ) : (
+            <>
+              <h1>{data?.metadata?.name} </h1>
+              <ArrowDownSvg />
+            </>
+          )}
         </div>
         {visible && (
           <ul className={styles.popup}>
@@ -90,13 +97,17 @@ export const NftPage = () => {
         </span>
       </div>
       <div className={styles.qr_container}>
-        <QRCode
-          className='rounded-xl p-2'
-          includeMargin
-          value={data?.metadata?.external_link}
-          size={sizeScreen}
-          imageSettings={{ src: data?.metadata?.image, excavate: true, height: 70, width: 70 }}
-        />
+        {isLoading ? (
+          <SkeletonLoader count={1} width={sizeScreen} height={sizeScreen} />
+        ) : (
+          <QRCode
+            className='rounded-xl p-2'
+            includeMargin
+            value={data?.metadata?.external_link}
+            size={sizeScreen}
+            imageSettings={{ src: data?.metadata?.image, excavate: true, height: 70, width: 70 }}
+          />
+        )}
       </div>
       <div
         className={classNames(styles.fullscreen_handler, {
