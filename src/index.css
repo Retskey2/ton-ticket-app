@@ -29,8 +29,8 @@ a {
 body {
   margin: 0;
   overflow-x: hidden;
-  height: 100svh;
-  max-height: -webkit-fill-available;
+  position: fixed;
+  height: 100%;
 }
 
 @layer base {
