@@ -4,6 +4,7 @@ import { useRequestCollection } from '@utils/api/hooks';
 
 import { Spinner } from '../Spinner/Spinner';
 
+import LogoTon from '@assets/icons/logoTon.svg';
 import LinkSvg from '@assets/icons/linkIcon.svg';
 import styles from './InputSearch.module.scss';
 
@@ -37,6 +38,10 @@ export const InputSearch = () => {
         <div className={styles.wrapperSpinner}>
           <Spinner />
         </div>
+      ) : message.length > 0 ? (
+        <button onClick={() => navigateToNftPage()}>
+          <LogoTon />
+        </button>
       ) : (
         <div />
       )}
