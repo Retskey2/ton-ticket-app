@@ -30,7 +30,15 @@ a {
 body {
   margin: 0;
   overflow-x: hidden;
-  height: calc(var(--devHeight) * 0.1);
+  height: 100vh;
+}
+
+/* Avoid Chrome to see Safari hack */
+@supports (-webkit-touch-callout: none) {
+  body {
+    /* The hack for Safari */
+    height: -webkit-fill-available;
+  }
 }
 
 @layer base {
