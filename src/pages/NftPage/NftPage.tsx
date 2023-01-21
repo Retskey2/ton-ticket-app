@@ -1,5 +1,4 @@
-import classNames from 'classnames';
-import QRCode from 'qrcode.react';
+import cn from 'classnames';
 
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -10,21 +9,14 @@ import CopySvg from '@assets/icons/copyIcon.svg';
 import CancelSvg from '@assets/icons/cancelIcon.svg';
 
 import styles from './NftPage.module.scss';
-import { useWindowSize } from 'usehooks-ts';
+
 import { useRequestCollection } from '@utils/api/hooks';
-import CopyPath from '@common/CopyPath/CopyPath';
-import { SkeletonLoader } from '@common/SkeletonLoaders';
+import { CopyPath, QrCodeDisplay, SkeletonLoader } from '@common';
 
 export const NftPage = () => {
   const [visible, setVisible] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
-  const [sizeScreen, setSizeScreen] = useState(0);
-  const [data, setData] = useState<NftCollection | undefined>(undefined);
-
-  const handleFullscreen = () => setFullscreen(!fullscreen);
-  const handlerVisible = () => setVisible(!visible);
-
-  const { width } = useWindowSize();
+  const [data, setData] = useState<NftCollection | null>(null);
 
   const { state } = useLocation();
   const { address } = useParams();
@@ -44,26 +36,10 @@ export const NftPage = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (width <= 280) setSizeScreen(220);
-    if (width > 281 && width <= 320) setSizeScreen(240);
-    if (width > 321 && width < 420) setSizeScreen(300);
-    if (width >= 420 && width < 720) setSizeScreen(400);
-    if (width >= 720) setSizeScreen(500);
-  }, [width]);
-
   return (
-    <div
-      className={classNames(styles.nft_container, {
-        ['bg-white']: fullscreen
-      })}
-    >
-      <div
-        className={classNames(styles.header_container, {
-          ['hidden']: fullscreen
-        })}
-      >
-        <div className={styles.title} onClick={handlerVisible}>
+    <div className={cn(styles.nft_container, { ['bg-white']: fullscreen })}>
+      <div className={cn(styles.header_container, { ['hidden']: fullscreen })}>
+        <div className={styles.title} onClick={() => setVisible(!visible)}>
           {isLoading ? (
             <SkeletonLoader width={200} />
           ) : (
@@ -86,40 +62,19 @@ export const NftPage = () => {
           </ul>
         )}
       </div>
-      <div
-        className={classNames(styles.subtitle, {
-          ['hidden']: fullscreen
-        })}
-      >
+      <div className={cn(styles.subtitle, { ['hidden']: fullscreen })}>
         <h1>QR code for validation</h1>
         <span>
           Show this is QR code to visitor <br /> to verify ticket ownership.
         </span>
       </div>
-      <div className={styles.qr_container}>
-        {isLoading ? (
-          <SkeletonLoader count={1} width={sizeScreen} height={sizeScreen} />
-        ) : (
-          <QRCode
-            className='rounded-xl p-2'
-            includeMargin
-            value={data?.metadata?.external_link}
-            size={sizeScreen}
-            imageSettings={{ src: data?.metadata?.image, excavate: true, height: 70, width: 70 }}
-          />
-        )}
-      </div>
-      <div
-        className={classNames(styles.fullscreen_handler, {
-          ['hidden']: fullscreen
-        })}
-        onClick={handleFullscreen}
-      >
+      <QrCodeDisplay data={data} isLoading={isLoading} />
+      <div className={cn(styles.fullscreen_handler, { ['hidden']: fullscreen })} onClick={() => setFullscreen(!fullscreen)}>
         Tap to show on full screen
       </div>
       <div className={styles.footer_container}>
         {fullscreen ? (
-          <div className={styles.cancel_wrapper} onClick={handleFullscreen}>
+          <div className={styles.cancel_wrapper} onClick={() => setFullscreen(!fullscreen)}>
             <CancelSvg />
           </div>
         ) : (

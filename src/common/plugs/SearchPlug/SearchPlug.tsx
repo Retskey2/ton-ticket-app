@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRequestCollection } from '@utils/api/hooks';
 import styles from './SearchPlug.module.scss';
 import TicketSvg from '@assets/icons/ticketIcon.svg';
+import { TonConnectButton } from '@tonconnect/ui-react';
 
 export const SearchPlug = () => {
   const [error, setError] = useState(false);
@@ -24,6 +25,7 @@ export const SearchPlug = () => {
       ) : (
         <div className={styles.noResult}>Your search returned no results</div>
       )}
+      <TonConnectButton className='mt-5' />
     </div>
   );
 };

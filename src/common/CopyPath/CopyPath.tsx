@@ -1,7 +1,6 @@
-import React, { useRef, useState } from 'react';
-import CopySvg from '@assets/icons/copyIcon.svg';
+import { FC, useState } from 'react';
 
-export default function CopyPath() {
+export const CopyPath: FC = () => {
   const [copySuccess, setCopySuccess] = useState<string>('Copy this link');
 
   const copyToClipBoard = async () => {
@@ -16,4 +15,4 @@ export default function CopyPath() {
     }
   };
   return <div onClick={copyToClipBoard}>{copySuccess}</div>;
-}
+};

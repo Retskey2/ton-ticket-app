@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tonconnect/sdk": "^2.0.7",
+    "@tonconnect/ui-react": "^0.0.11",
     "axios": "^1.2.1",
     "classnames": "^2.3.2",
     "qrcode.react": "^3.1.0",

@@ -1,7 +1,9 @@
-import Layout from '@common/Layout/Layout';
-import React, { FC, PropsWithChildren } from 'react';
+import { Layout } from '@common';
+import { THEME, TonConnectUIProvider } from '@tonconnect/ui-react';
+import { FC, PropsWithChildren } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { TonProofDemoApi } from '../../TonProofDemoApi';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,10 +17,16 @@ type Props = {};
 
 const MainProvider: FC<PropsWithChildren<Props>> = ({ children }) => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Layout>{children}</Layout>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <TonConnectUIProvider
+      manifestUrl=' https://ton-ticket-app.vercel.app/tonconnect-manifest.json'
+      getConnectParameters={() => TonProofDemoApi.connectWalletRequest}
+      uiPreferences={{ theme: THEME.DARK }}
+    >
+      <QueryClientProvider client={queryClient}>
+        <Layout>{children}</Layout>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </TonConnectUIProvider>
   );
 };
 
