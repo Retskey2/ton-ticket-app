@@ -1,8 +1,8 @@
 import useSizeScreenBlocks from '@utils/hooks/useSizeScreenBlock';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import QrScan from 'react-qr-reader';
 
-export const QrCodeReader = () => {
+export const QrCodeReader: FC = () => {
   const { adaptiveSize } = useSizeScreenBlocks();
   const [qrScanner, setQRscanner] = useState('No result');
 

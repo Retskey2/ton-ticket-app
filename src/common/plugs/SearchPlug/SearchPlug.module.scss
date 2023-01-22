@@ -1,15 +1,15 @@
 .wrapper {
     @apply m-auto flex h-[95%] max-w-sm flex-col items-center justify-center text-center;
 
-    >h1 {
+    > h1 {
         @apply text-2xl font-bold leading-8;
     }
 
-    >p {
+    > p {
         @apply text-center text-base font-medium leading-6 text-[#8994A3];
     }
 
-    .noResult {
+    > div {
         @apply text-base font-medium text-[#556170];
     }
 }

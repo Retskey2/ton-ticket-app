@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import styles from './Spinner.module.scss';
 
-export const Spinner = () => (
+export const Spinner: FC = () => (
   <div role='status' className={styles.spinner_container}>
     <svg aria-hidden='true' className={styles.spinner} viewBox='0 0 100 101' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path

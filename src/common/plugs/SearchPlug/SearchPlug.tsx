@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useRequestCollection } from '@utils/api/hooks';
 import styles from './SearchPlug.module.scss';
 import TicketSvg from '@assets/icons/ticketIcon.svg';
 import { TonConnectButton } from '@tonconnect/ui-react';
 
-export const SearchPlug = () => {
+export const SearchPlug: FC = () => {
   const [error, setError] = useState(false);
   const { isError } = useRequestCollection();
 
@@ -23,9 +23,9 @@ export const SearchPlug = () => {
           </p>
         </>
       ) : (
-        <div className={styles.noResult}>Your search returned no results</div>
+        <div>Your search returned no results</div>
       )}
-      <TonConnectButton className='mt-5' />
+      <TonConnectButton className='my-5' />
     </div>
   );
 };

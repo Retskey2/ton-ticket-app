@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRequestCollection } from '@utils/api/hooks';
 
@@ -8,7 +8,7 @@ import LogoTon from '@assets/icons/logoTon.svg';
 import LinkSvg from '@assets/icons/linkIcon.svg';
 import styles from './InputSearch.module.scss';
 
-export const InputSearch = () => {
+export const InputSearch: FC = () => {
   const navigate = useNavigate();
 
   const [message, setMessage] = useState<string>('');
